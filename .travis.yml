@@ -87,13 +87,13 @@ addons:
     - patchelf
     - cmake
     - bats
-    update: false
+    update: true
   homebrew:
     packages:
     - cmake
     - bats-core
     - ccache
-    update: false
+#    update: true
 
 # activating ccache on MacOS.
 before_install:
