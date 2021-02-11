@@ -69,13 +69,13 @@ jobs:
 #      os: osx
 #      osx_image: xcode11.3
 #      env: INSTALL_PREFIX="~/helib_install" PACKAGE_BUILD=ON
-#    - name: "MacOS Catalina lib build"
-#      os: osx
-#      osx_image: xcode12.2
-#      env: INSTALL_PREFIX="~/helib_install" PACKAGE_BUILD=OFF
+    - name: "MacOS Catalina lib build"
+      os: osx
+      osx_image: xcode12
+      env: INSTALL_PREFIX="~/helib_install" PACKAGE_BUILD=OFF
     - name: "MacOS Catalina package build"
       os: osx
-      osx_image: xcode12.2
+      osx_image: xcode12
       env: INSTALL_PREFIX="~/helib_install" PACKAGE_BUILD=ON
       
 
@@ -87,13 +87,13 @@ addons:
     - patchelf
     - cmake
     - bats
-    update: true
+    update: false
   homebrew:
     packages:
     - cmake
     - bats-core
     - ccache
-    update: true
+    update: false
 
 # activating ccache on MacOS.
 before_install:
