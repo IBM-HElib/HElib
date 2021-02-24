@@ -685,8 +685,8 @@ public:
   [[deprecated(
       "Please use Ctxt::operator+=(const EncodedPtxt& ptxt) instead.")]]
   void addConstantCKKS(const NTL::ZZX& poly,
-                  NTL::xdouble size = NTL::xdouble(-1.0),
-                  NTL::xdouble factor = NTL::xdouble(-1.0));
+                       NTL::xdouble size = NTL::xdouble(-1.0),
+                       NTL::xdouble factor = NTL::xdouble(-1.0));
 
   /**
    * @deprecated This function is deprecated in favor of a newer API.
@@ -1145,9 +1145,9 @@ public:
   [[deprecated(
       "Please use Ctxt::operator*=(const EncodedPtxt& ptxt) instead.")]]
   void multByConstantCKKS(const NTL::ZZX& poly,
-                     NTL::xdouble size = NTL::xdouble(-1.0),
-                     NTL::xdouble factor = NTL::xdouble(-1.0),
-                     double roundingErr = -1.0)
+                          NTL::xdouble size = NTL::xdouble(-1.0),
+                          NTL::xdouble factor = NTL::xdouble(-1.0),
+                          double roundingErr = -1.0)
   {
     DoubleCRT dcrt(poly, context, primeSet);
     multByConstantCKKS(dcrt, size, factor, roundingErr);
