@@ -1185,35 +1185,35 @@ TEST_P(TestPtxtCKKS, plusEqualsWithCiphertextWorks)
 // Ctxt::operator+=(const Ptxt<Scheme>& ptxt).
 // TEST_P(TestPtxtCKKS, addConstantCKKSWithCiphertextWorks)
 // {
-  // context.buildModChain(150, 2);
-  // helib::SecKey secret_key(context);
-  // secret_key.GenSecKey();
-  // const helib::PubKey& public_key(secret_key);
-// 
-  // // Encrypt the augend, addend is plaintext
-  // std::vector<std::complex<double>> augend_data(context.getEA().size());
-  // std::vector<std::complex<double>> addend_data(context.getEA().size());
-  // for (long i = 0; i < helib::lsize(augend_data); ++i) {
-    // augend_data[i] = {i / 70.0, -i * 10.5};
-    // addend_data[i] = {-i / 10.0, i * 0.8};
-  // }
-  // helib::Ptxt<helib::CKKS> augend_ptxt(context, augend_data);
-  // helib::Ptxt<helib::CKKS> addend(context, addend_data);
-  // helib::Ctxt augend(public_key);
-  // public_key.Encrypt(augend, augend_ptxt);
-// 
-  // augend.addConstantCKKS(addend); // Deprecated in favor of augend += addend;
-  // augend_ptxt += addend;
-// 
-  // // augend_ptxt and augend should now match
-  // helib::Ptxt<helib::CKKS> result(context);
-  // secret_key.Decrypt(result, augend);
-  // EXPECT_EQ(result.size(), augend_ptxt.size());
-  // for (std::size_t i = 0; i < result.size(); ++i) {
-    // EXPECT_NEAR(std::norm(result[i] - augend_ptxt[i]),
-                // 0,
-                // post_encryption_epsilon);
-  // }
+//  context.buildModChain(150, 2);
+//  helib::SecKey secret_key(context);
+//  secret_key.GenSecKey();
+//  const helib::PubKey& public_key(secret_key);
+//
+//  // Encrypt the augend, addend is plaintext
+//  std::vector<std::complex<double>> augend_data(context.getEA().size());
+//  std::vector<std::complex<double>> addend_data(context.getEA().size());
+//  for (long i = 0; i < helib::lsize(augend_data); ++i) {
+//    augend_data[i] = {i / 70.0, -i * 10.5};
+//    addend_data[i] = {-i / 10.0, i * 0.8};
+//  }
+//  helib::Ptxt<helib::CKKS> augend_ptxt(context, augend_data);
+//  helib::Ptxt<helib::CKKS> addend(context, addend_data);
+//  helib::Ctxt augend(public_key);
+//  public_key.Encrypt(augend, augend_ptxt);
+//
+//  augend.addConstantCKKS(addend); // Deprecated in favor of augend += addend;
+//  augend_ptxt += addend;
+//
+//  // augend_ptxt and augend should now match
+//  helib::Ptxt<helib::CKKS> result(context);
+//  secret_key.Decrypt(result, augend);
+//  EXPECT_EQ(result.size(), augend_ptxt.size());
+//  for (std::size_t i = 0; i < result.size(); ++i) {
+//    EXPECT_NEAR(std::norm(result[i] - augend_ptxt[i]),
+//                0,
+//                post_encryption_epsilon);
+//  }
 // }
 
 TEST_P(TestPtxtCKKS, minusEqualsWithCiphertextWorks)
@@ -1254,36 +1254,36 @@ TEST_P(TestPtxtCKKS, minusEqualsWithCiphertextWorks)
 // Ctxt::operator*=(const Ptxt<Scheme>& ptxt).
 // TEST_P(TestPtxtCKKS, multByConstantCKKSFromCiphertextWorks)
 // {
-  // context.buildModChain(150, 2);
-  // helib::SecKey secret_key(context);
-  // secret_key.GenSecKey();
-  // const helib::PubKey& public_key(secret_key);
-// 
-  // // Encrypt the multiplier, multiplicand is plaintext
-  // std::vector<std::complex<double>> multiplier_data(context.getEA().size());
-  // std::vector<std::complex<double>> multiplicand_data(context.getEA().size());
-  // for (long i = 0; i < helib::lsize(multiplier_data); ++i) {
-    // multiplier_data[i] = {i * 4.5, -i * i / 12.5};
-    // multiplicand_data[i] = {(i - 2.5) / 3.5, i * 4.2};
-  // }
-  // helib::Ptxt<helib::CKKS> multiplier_ptxt(context, multiplier_data);
-  // helib::Ptxt<helib::CKKS> multiplicand(context, multiplicand_data);
-// 
-  // helib::Ctxt multiplier(public_key);
-  // public_key.Encrypt(multiplier, multiplier_ptxt);
-// 
-  // multiplier.multByConstantCKKS(multiplicand);
-  // multiplier_ptxt *= multiplicand;
-// 
-  // // multiplier_ptxt and multiplier should now match
-  // helib::Ptxt<helib::CKKS> result(context);
-  // secret_key.Decrypt(result, multiplier);
-  // EXPECT_EQ(result.size(), multiplier_ptxt.size());
-  // for (std::size_t i = 0; i < result.size(); ++i) {
-    // EXPECT_NEAR(std::norm(result[i] - multiplier_ptxt[i]),
-                // 0,
-                // post_encryption_epsilon);
-  // }
+//  context.buildModChain(150, 2);
+//  helib::SecKey secret_key(context);
+//  secret_key.GenSecKey();
+//  const helib::PubKey& public_key(secret_key);
+//
+//  // Encrypt the multiplier, multiplicand is plaintext
+//  std::vector<std::complex<double>> multiplier_data(context.getEA().size());
+//  std::vector<std::complex<double>> multiplicand_data(context.getEA().size());
+//  for (long i = 0; i < helib::lsize(multiplier_data); ++i) {
+//    multiplier_data[i] = {i * 4.5, -i * i / 12.5};
+//    multiplicand_data[i] = {(i - 2.5) / 3.5, i * 4.2};
+//  }
+//  helib::Ptxt<helib::CKKS> multiplier_ptxt(context, multiplier_data);
+//  helib::Ptxt<helib::CKKS> multiplicand(context, multiplicand_data);
+//
+//  helib::Ctxt multiplier(public_key);
+//  public_key.Encrypt(multiplier, multiplier_ptxt);
+//
+//  multiplier.multByConstantCKKS(multiplicand);
+//  multiplier_ptxt *= multiplicand;
+//
+//  // multiplier_ptxt and multiplier should now match
+//  helib::Ptxt<helib::CKKS> result(context);
+//  secret_key.Decrypt(result, multiplier);
+//  EXPECT_EQ(result.size(), multiplier_ptxt.size());
+//  for (std::size_t i = 0; i < result.size(); ++i) {
+//    EXPECT_NEAR(std::norm(result[i] - multiplier_ptxt[i]),
+//                0,
+//                post_encryption_epsilon);
+//  }
 // }
 
 TEST_P(TestPtxtCKKS, timesEqualsFromCiphertextWorks)

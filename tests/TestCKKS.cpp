@@ -288,7 +288,7 @@ TEST_P(TestCKKS, multiplyingPolyConstantToCiphertextWorks)
   rf = c1.getRatFactor();
   pm = c1.getPtxtMag();
   helib::PtxtArray pa(context, vd2);
-  pa.encode(eptxt,/*mag*/1.0); // Encode polynomial
+  pa.encode(eptxt, /*mag*/ 1.0); // Encode polynomial
   c1 *= eptxt;
   ea.decrypt(c1, secretKey, vd3);
 
