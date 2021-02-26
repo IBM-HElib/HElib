@@ -665,8 +665,11 @@ public:
   [[deprecated("Please use Ctxt::operator+=(double ptxt) instead.")]]
   void addConstantCKKS(double x)
   { // FIXME: not enough precision when x is large
-    addConstantCKKS(
-        rationalApprox(x, /*denomBound=*/1L << getContext().getAlMod().getR()));
+    // This function is deprecated.
+//    addConstantCKKS(
+//        rationalApprox(x, /*denomBound=*/1L << getContext().getAlMod().getR()));
+    auto p = rationalApprox(x, /*denomBound=*/1L << getContext().getAlMod().getR());
+    *this += double(p.first) / p.second;
   }
 
   /**
@@ -1125,7 +1128,9 @@ public:
   [[deprecated("Please use Ctxt::operator*=(double ptxt) instead.")]]
   void multByConstantCKKS(std::pair<long, long> num) // rational number
   {
-    multByConstantCKKS(double(num.first) / num.second);
+    // This function is deprecated.
+    // multByConstantCKKS(double(num.first) / num.second);
+    *this *= double(num.first) / num.second;
   }
 
   /**
