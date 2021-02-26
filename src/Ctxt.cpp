@@ -1061,11 +1061,11 @@ void Ctxt::addConstantCKKS(const NTL::ZZX& poly,
 Ctxt& Ctxt::operator*=(const NTL::ZZX& poly)
 {
   // NOTE: This function has been depcreated.
-//  if (isCKKS())
-//    multByConstantCKKS(poly);
-//  else
-//    multByConstant(poly);
-//  return *this;
+  //  if (isCKKS())
+  //    multByConstantCKKS(poly);
+  //  else
+  //    multByConstant(poly);
+  //  return *this;
   PtxtArray pa(getContext(), poly);
   return *this *= pa;
 }
@@ -1075,17 +1075,17 @@ void Ctxt::addConstantCKKS(const std::vector<std::complex<double>>& other)
   // VJS-FIXME: this routine has a number of issues and should
   // be deprecated in favor of the new EncodedPtxt-based routines
 
-//  NTL::ZZX poly;
-//  double factor = getContext().getEA().getCx().encode(poly, other);
-//  // VJS-NOTE: maybe this encdoing routine should also return
-//  // the rounding error...we kind of need this value
-//
-//  double size = Norm(other);
-//
-//  if (size == 0.0)
-//    return;
-//
-//  addConstantCKKS(poly, NTL::xdouble{size}, NTL::xdouble{factor});
+  //  NTL::ZZX poly;
+  //  double factor = getContext().getEA().getCx().encode(poly, other);
+  //  // VJS-NOTE: maybe this encdoing routine should also return
+  //  // the rounding error...we kind of need this value
+  //
+  //  double size = Norm(other);
+  //
+  //  if (size == 0.0)
+  //    return;
+  //
+  //  addConstantCKKS(poly, NTL::xdouble{size}, NTL::xdouble{factor});
   PtxtArray pa(getContext(), other);
   *this += pa;
 }
@@ -1873,17 +1873,17 @@ void Ctxt::multByConstantCKKS(const std::vector<std::complex<double>>& other)
   // be deprecated in favor of the new EncodedPtxt-based routines
 
   // NOTE: some replicated logic here and in addConstantCKKS...
-//  NTL::ZZX poly;
-//  double factor = getContext().getEA().getCx().encode(poly, other);
-//  // VJS-NOTE: why does encode with ZZX not require a size arg?
-//
-//  double size = Norm(other);
-//
-//  // VJS-NOTE: if size==0 we should just do thus->clear()
-//  if (size == 0.0)
-//    size = 1.0;
-//
-//  multByConstantCKKS(poly, NTL::xdouble{size}, NTL::xdouble{factor});
+  //  NTL::ZZX poly;
+  //  double factor = getContext().getEA().getCx().encode(poly, other);
+  //  // VJS-NOTE: why does encode with ZZX not require a size arg?
+  //
+  //  double size = Norm(other);
+  //
+  //  // VJS-NOTE: if size==0 we should just do thus->clear()
+  //  if (size == 0.0)
+  //    size = 1.0;
+  //
+  //  multByConstantCKKS(poly, NTL::xdouble{size}, NTL::xdouble{factor});
   PtxtArray pa(getContext(), other);
   *this *= pa;
 }

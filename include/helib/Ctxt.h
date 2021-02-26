@@ -668,7 +668,8 @@ public:
     // This function is deprecated.
 //    addConstantCKKS(
 //        rationalApprox(x, /*denomBound=*/1L << getContext().getAlMod().getR()));
-    auto p = rationalApprox(x, /*denomBound=*/1L << getContext().getAlMod().getR());
+    auto p =
+        rationalApprox(x, /*denomBound=*/1L << getContext().getAlMod().getR());
     *this += double(p.first) / p.second;
   }
 
