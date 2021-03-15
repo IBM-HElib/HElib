@@ -32,4 +32,4 @@ RUN yum -y install gmp-devel ntl-devel
 COPY build_scripts/build_and_test_helib.sh /root
 
 # Default script - Build and test HElib and all subprojects using package build
-CMD ["/root/build_and_test_helib.sh -a"]
+CMD ["/root/build_and_test_helib.sh", "-a"]
