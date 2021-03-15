@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Script for building and testing HElib in various configurations.
+# Default behaviour is build IBM-HElib/HElib master using the package build
+# without running any tests.
+
 # Default arguments
 repo=https://github.com/IBM-HElib/HElib.git
 branch=master
@@ -9,6 +13,8 @@ tests=false
 examples=false
 utils=false
 gbench=false
+helib_install="$HOME/helib_build_install"
+helib_DIR="${helib_install}/helib_pack/share/cmake/helib/"
 
 # Function for printing usage info.
 function printUsage {
@@ -37,6 +43,7 @@ while getopts ":hr:b:plteuga" opt; do
     p ) package=true
         ;;
     l ) package=false
+        helib_DIR="${helib_install}/share/cmake/helib/"
         ;;
     t ) tests=true 
         all=false
@@ -64,49 +71,51 @@ while getopts ":hr:b:plteuga" opt; do
 done
 
 
-# Clone and build HElib
+# Clone and build HElib in the home directory
 cd
 git clone ${repo} # Default = https://github.com/IBM-HElib/HElib.git
 cd HElib
 git checkout ${branch} # Default = master
 mkdir build
 cd build
-cmake -DPACKAGE_BUILD=${package} -DBUILD_SHARED=ON -DCMAKE_INSTALL_PREFIX="$HOME/helib_build_install" -DENABLE_TEST=${tests} ..
+cmake -DPACKAGE_BUILD=${package} -DBUILD_SHARED=ON -DCMAKE_INSTALL_PREFIX=${helib_install} -DENABLE_TEST=${tests} ..
 make -j4 VERBOSE=1
 make install
 
 # Run the google tests
-if [[ ${all} || ${tests} ]]; then
+if [[ ${all} = "true" || ${tests} = "true" ]]; then
   ctest -j4 --output-on-failure --no-compress-output --test-output-size-passed 32768 --test-output-size-failed 262144 -T Test
 fi
 
 # Build and test the examples
-if [[ ${all} || ${examples} ]]; then
+if [[ ${all} = "true" || ${examples} = "true" ]]; then
   cd ../examples
   mkdir build
   cd build
-  cmake -Dhelib_DIR=$HOME/helib_build_install/share/cmake/helib/ ..
+  cmake -Dhelib_DIR=${helib_DIR} ..
   make -j4 VERBOSE=1
   cd ../tests
   bats -j 4 .
+  cd ..
 fi
 
 # Build and test the utilities
-if [[ ${all} || ${utils} ]]; then
-  cd ../../utils
+if [[ ${all} = "true" || ${utils} = "true" ]]; then
+  cd ../utils
   mkdir build
   cd build
-  cmake -Dhelib_DIR=$HOME/helib_build_install/share/cmake/helib/ ..
+  cmake -Dhelib_DIR=${helib_DIR} ..
   make -j4 VERBOSE=1
   cd ../tests
   bats -j 4 .
+  cd ..
 fi
 
 # Build benchmarks
-if [[ ${all} || ${gbench} ]]; then
-  cd ../../benchmarks
+if [[ ${all} = "true" || ${gbench} = "true" ]]; then
+  cd ../benchmarks
   mkdir build
   cd build
-  cmake -Dhelib_DIR=$HOME/helib_build_install/share/cmake/helib/ ..
+  cmake -Dhelib_DIR=${helib_DIR} ..
   make -j4 VERBOSE=1
 fi
