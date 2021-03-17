@@ -8,7 +8,6 @@
 repo=https://github.com/IBM-HElib/HElib.git
 branch=master
 package=true
-all=false
 tests=false
 examples=false
 utils=false
@@ -46,18 +45,17 @@ while getopts ":hr:b:plteuga" opt; do
         helib_DIR="${helib_install}/share/cmake/helib/"
         ;;
     t ) tests=true 
-        all=false
         ;;
     e ) examples=true
-        all=false
         ;;
     u ) utils=true
-        all=false
         ;;
     g ) gbench=true
-        all=false
         ;;
-    a ) all=true
+    a ) tests=true
+        examples=true
+        utils=true
+        gbench=true
         ;;
     : ) echo "Invalid option: $OPTARG requires an argument." 1>&2
         printUsage
@@ -83,12 +81,12 @@ make -j4 VERBOSE=1
 make install
 
 # Run the google tests
-if [[ ${all} = "true" || ${tests} = "true" ]]; then
+if [[ ${tests} = "true" ]]; then
   ctest -j4 --output-on-failure --no-compress-output --test-output-size-passed 32768 --test-output-size-failed 262144 -T Test
 fi
 
 # Build and test the examples
-if [[ ${all} = "true" || ${examples} = "true" ]]; then
+if [[ ${examples} = "true" ]]; then
   cd ../examples
   mkdir build
   cd build
@@ -100,7 +98,7 @@ if [[ ${all} = "true" || ${examples} = "true" ]]; then
 fi
 
 # Build and test the utilities
-if [[ ${all} = "true" || ${utils} = "true" ]]; then
+if [[ ${utils} = "true" ]]; then
   cd ../utils
   mkdir build
   cd build
@@ -112,7 +110,7 @@ if [[ ${all} = "true" || ${utils} = "true" ]]; then
 fi
 
 # Build benchmarks
-if [[ ${all} = "true" || ${gbench} = "true" ]]; then
+if [[ ${gbench} = "true" ]]; then
   cd ../benchmarks
   mkdir build
   cd build
