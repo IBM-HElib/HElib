@@ -817,6 +817,7 @@ TEST_P(TestBinIO_CKKS, readKeysFromDeserializeCorrectly)
   EXPECT_EQ(secretKey, deserialized_sk);
 
   // check that writing SK is smaller than PK+SK
+  // Here we assume that size(SK)<size(PK)
   EXPECT_TRUE(2*strSec.tellp() < strPubSec.tellp());
 }
 
