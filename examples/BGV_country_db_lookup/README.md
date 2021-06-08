@@ -66,12 +66,12 @@ described next.
 
 ![slide8](slides/DB8.jpg)
 
-For the next step, one should be aware of a mathematical result known as
-Fermat's little theorem (FLT). FLT states that given any non-zero integer `a`
-and a prime number `p` then `a` raised to the power `p-1` always results in a
-number `pn + 1` where `n` is an integer. This is formally captured below. Using
-this result we can modify it slightly to produce a function `f(x)` as stated
-below.
+For the next step, one should be aware of a mathematical result known as 
+Fermat's little theorem (FLT). FLT implies that given any non-zero integer `a` 
+and a prime number `p`, if `a` is not divisible by `p` then `a^(p-1)-1` is an 
+integer multiple of `p`. Or to put it another way, `a^(p-1)` modulo `p` equals 1.
+This is formally captured below. Using this result we can modify it slightly to
+ produce a function `f(x)` as stated below.
 
 ![slide9](slides/DB9.jpg)
 
